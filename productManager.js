@@ -7,9 +7,9 @@ class ProductManager {
     addProduct(title, description, price, thumbnail, code, stock){
         const codeExists = this.products.some(product => product.code === code)
         if (codeExists){
-            console.log("A product with this code already exists")
+            console.error("A product with this code already exists")
         }else if(arguments.length !==6){
-            console.log("All fields are required")
+            console.error("All fields are required")
         }else{
             const product = {
             title, description, price, thumbnail, code, stock
@@ -30,7 +30,7 @@ class ProductManager {
             console.log(productFound)
             return productFound;
         }else{
-            console.log("There isn't a product with that id")
+            throw new Error("There isn't a product with that id")
         }
     }
 }
@@ -42,7 +42,7 @@ manager.addProduct("producto prueba", "este es un producto prueba", 200, "sin im
 manager.getProducts();
 manager.addProduct("producto prueba", "este es un producto prueba", 200, "sin imagen", "abc123", 25);
 manager.addProduct("producto prueba", "este es un producto prueba", 200, "sin imagen", "abc124");
-manager.getProductById(2);
 manager.getProductById(1);
 manager.addProduct("producto prueba b", "este es un producto prueba b", 300, "sin imagen", "abc125", 25);
 manager.getProducts();
+manager.getProductById(2);
